@@ -1,0 +1,12 @@
+<apex:component controller="HerokuAppComponentController" selfClosing="true">
+
+  <apex:attribute name="name" type="string" description="Heroku App Name" required="true" assignTo="{!appName}" />    
+  <apex:pageBlock title="{!appName}">
+        <apex:pageBlockSection columns="1">
+            <apex:pageBlockSectionItem >URL<apex:outputText ><a href="{!app.web_url}" target="_blank">{!app.web_url}</a></apex:outputText></apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >Stack<apex:outputText value="{!app.stack}"/></apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >Buildpack<apex:outputText value="{!app.buildpack_provided_description}"/></apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >Released<apex:outputText value="{!app.released_at}"/></apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:component>

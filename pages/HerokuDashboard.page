@@ -1,0 +1,5 @@
+<apex:page >
+    <c:herokuApp name="forceworkbench"/>
+    <c:herokuApp name="macrophage"/>
+    <c:herokuApps />
+</apex:page>

@@ -1,0 +1,61 @@
+<!--suppress ALL -->
+<apex:page controller="DataclipController" standardStylesheets="true">
+  <apex:form >
+    <apex:pageBlock title="Dataclip Explorer">
+      <apex:pageMessages />
+      <apex:pageBlockSection >
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel for="url">URL</apex:outputLabel>
+          <apex:inputText value="{!url}" id="url" size="100" required="true"/>
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >
+          <apex:commandButton value="Load"/>
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      <apex:outputPanel rendered="{!NOT(ISNULL(result))}">
+        <apex:pageBlockSection columns="1" title="Result">
+          <apex:pageBlockTable value="{!result.headersAndValues}" var="row">
+            <apex:repeat value="{!row}" var="col">
+              <apex:column >
+                <apex:outputText >{!col}</apex:outputText>
+              </apex:column>
+            </apex:repeat>
+          </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="Charting Options" columns="4">
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel for="xSeries">X Series</apex:outputLabel>
+            <apex:selectList id="xSeries" value="{!xSeries}">
+              <apex:selectOptions value="{!result.fieldSelectOptions}"/>
+            </apex:selectList>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel for="ySeries">Y Series</apex:outputLabel>
+            <apex:selectList id="ySeries" value="{!ySeries}">
+              <apex:selectOptions value="{!result.fieldSelectOptions}"/>
+            </apex:selectList>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+            <apex:commandButton value="Chart"/>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem />
+        </apex:pageBlockSection>
+        <apex:outputPanel rendered="{!NOT(ISNULL(xSeries)) && NOT(ISNULL(ySeries))}">
+          <apex:pageBlockSection title="Pie Chart">
+            <apex:chart data="{!result.chartData}" height="500" width="500">
+              <apex:legend position="right"/>
+              <apex:pieSeries labelField="{!xSeries}" dataField="{!ySeries}"/>
+            </apex:chart>
+          </apex:pageBlockSection>
+          <apex:pageBlockSection title="Bar Chart">
+            <apex:chart data="{!result.chartData}" width="600" height="400">
+              <apex:axis type="Category" position="bottom" fields="month" title="Month"/>
+              <apex:axis type="Numeric" position="left" fields="book_purchases" title="Purchases"/>
+              <apex:barSeries orientation="vertical" axis="bottom" xField="{!xSeries}" yField="{!ySeries}"/>
+            </apex:chart>
+          </apex:pageBlockSection>
+        </apex:outputPanel>
+      </apex:outputPanel>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

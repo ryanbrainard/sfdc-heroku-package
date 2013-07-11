@@ -1,0 +1,13 @@
+<apex:component controller="DataclipController" selfClosing="true">
+    <apex:attribute name="dataclipUrl" type="string" description="Dataclip URL" required="true" assignTo="{!url}" />    
+  
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!result.headersAndValues}" var="row">
+               <apex:repeat value="{!row}" var="col">
+                <apex:column >
+                    <apex:outputText >{!col}</apex:outputText>
+                </apex:column>
+            </apex:repeat>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:component>

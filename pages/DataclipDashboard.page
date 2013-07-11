@@ -1,0 +1,8 @@
+<apex:page >
+    <apex:pageBlock title="Dataclip Dashboard">
+        <apex:pageBlockSection title="Top Users">
+            <c:dataclip dataclipUrl="https://dataclips.heroku.com/alawfpzwcmscpwxsimtrizvtrldg"/>
+            <c:dataclip dataclipUrl="https://dataclips.heroku.com/jaqrsxcouaujrzoycvtaczqukxxz"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>
