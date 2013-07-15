@@ -1,0 +1,18 @@
+<project name="Sample usage of Salesforce Ant tasks" default="test" basedir="." xmlns:sfdc="antlib:com.salesforce">
+
+    <property file=".build.properties"/>
+    <property environment="env"/>
+
+    <target name="retrieve">
+      <mkdir dir="src"/>
+      <sfdc:retrieve 
+        username="${sfdc.de.username}" 
+        password="${sfdc.de.password}" 
+        serverurl="${sfdc.de.serverUrl}" 
+        retrieveTarget="src" 
+        unpackaged="package.xml"
+      />
+    </target>
+
+</project>
+
