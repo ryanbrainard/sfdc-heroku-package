@@ -12,5 +12,9 @@
         <members>dataclip</members>
         <name>ApexComponent</name>
     </types>
+    <types>
+        <members>Dataclips</members>
+        <name>RemoteSiteSetting</name>
+    </types>
     <version>28.0</version>
 </Package>
