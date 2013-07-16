@@ -15,6 +15,12 @@
       </antcall>
     </target>
 
+    <target name="dataclips-deploy">
+      <antcall target="deployUnpackaged">
+        <param name="manifestName" value="dataclips" />
+      </antcall>
+    </target>
+
     <target name="sessions-retrieve">
       <antcall target="retrieveUnpackaged">
         <param name="manifestName" value="sessions" />
@@ -35,12 +41,23 @@
 
     <target name="saveUnpackaged">
       <fail unless="manifestName"/>
-      <!-- <copy file="${manifestName}.package.xml" tofile="${manifestName}/package.xml"/> -->
       <sfdc:deploy 
         username="${sfdc.de.username}" 
         password="${sfdc.de.password}" 
         serverurl="${sfdc.de.serverUrl}" 
         deployRoot="${manifestName}"
+      />
+    </target>
+
+    <target name="deployUnpackaged">
+      <property name="checkOnly" value="true"/>
+      <fail unless="manifestName"/>
+      <sfdc:deploy 
+        username="${sfdc.prod.username}" 
+        password="${sfdc.prod.password}" 
+        serverurl="${sfdc.prod.serverUrl}" 
+        deployRoot="${manifestName}"
+        checkOnly="${checkOnly}"
       />
     </target>
 </project>
