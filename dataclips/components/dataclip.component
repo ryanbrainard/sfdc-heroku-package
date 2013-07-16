@@ -1,5 +1,5 @@
 <apex:component controller="DataclipController" selfClosing="true">
-    <apex:attribute name="dataclipUrl" type="string" description="Dataclip URL" required="true" assignTo="{!url}" />    
+    <apex:attribute name="url" type="string" description="Dataclip URL" required="true" assignTo="{!dataclipUrl}" />    
   
     <apex:pageBlock >
         <apex:pageBlockTable value="{!result.headersAndValues}" var="row">

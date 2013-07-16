@@ -1,12 +1,8 @@
 public class DataclipController {
 
-    public String ySeries { get; set; }
-
-    public String xSeries { get; set; }
-
-    public String url { get; 
+    public String dataclipUrl { get; 
         set {
-            url = value;
+            dataclipUrl = value;
             load();
         } 
     }
@@ -15,7 +11,7 @@ public class DataclipController {
     
     public void load() {
         HttpRequest req = new HttpRequest();
-        req.setEndpoint(url + '.json');
+        req.setEndpoint(dataclipUrl + '.json');
         req.setMethod('GET');
         HttpResponse res = new Http().send(req);
         result = (DataclipResult) JSON.deserializeStrict(res.getBody(), DataclipResult.class);
