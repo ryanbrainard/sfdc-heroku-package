@@ -5,6 +5,7 @@
         <members>DataclipControllerTest</members>
         <members>DataclipResult</members>
         <members>DataclipResultTest</members>
+        <members>HttpCalloutSpy</members>
         <name>ApexClass</name>
     </types>
     <types>
