@@ -1,0 +1,20 @@
+<apex:page standardController="HerokuSession__c" extensions="HerokuOAuthController">
+    <apex:form >
+        <apex:outputPanel rendered="{!NOT(hasSession)}">
+            <apex:commandButton value="Link my Heroku Account" action="{!authorize}"/>
+        </apex:outputPanel>
+
+        <apex:outputPanel rendered="{!hasSession}">
+            <apex:pageBlock title="Heroku Account Link">
+                <apex:pageBlockSection columns="2">
+                    Salesforce account <strong>{!$User.Username}</strong> is linked to Heroku account <strong>{!herokuAccount.email}.</strong>
+                    <apex:pageBlockSectionItem >
+                        <apex:commandButton value="Relink" action="{!authorize}"/>
+                        <apex:commandButton value="Unlink" action="{!invalidateSession}"/>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <c:herokuApps />
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

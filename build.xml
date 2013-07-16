@@ -4,13 +4,26 @@
     <property environment="env"/>
 
     <target name="dataclips-retrieve">
-      <mkdir dir="dataclips"/>
+      <antcall target="retrieveUnpackaged">
+        <param name="manifestName" value="dataclips" />
+      </antcall>
+    </target>
+
+    <target name="sessions-retrieve">
+      <antcall target="retrieveUnpackaged">
+        <param name="manifestName" value="sessions" />
+      </antcall>
+    </target>
+
+    <target name="retrieveUnpackaged">
+      <fail unless="manifestName"/>
+      <mkdir dir="${manifestName}"/>
       <sfdc:retrieve 
         username="${sfdc.de.username}" 
         password="${sfdc.de.password}" 
         serverurl="${sfdc.de.serverUrl}" 
-        retrieveTarget="dataclips" 
-        unpackaged="dataclips.package.xml"
+        retrieveTarget="${manifestName}" 
+        unpackaged="${manifestName}.package.xml"
       />
     </target>
 
