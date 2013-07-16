@@ -1,4 +1,0 @@
-<apex:page >
-    <c:herokuApp name="axiomsso"/>
-    <c:herokuApp name="macrophage"/>
-</apex:page>

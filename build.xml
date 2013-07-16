@@ -3,14 +3,14 @@
     <property file=".build.properties"/>
     <property environment="env"/>
 
-    <target name="retrieve">
-      <mkdir dir="src"/>
+    <target name="dataclips-retrieve">
+      <mkdir dir="dataclips"/>
       <sfdc:retrieve 
         username="${sfdc.de.username}" 
         password="${sfdc.de.password}" 
         serverurl="${sfdc.de.serverUrl}" 
-        retrieveTarget="src" 
-        unpackaged="package.xml"
+        retrieveTarget="dataclips" 
+        unpackaged="dataclips.package.xml"
       />
     </target>
 
