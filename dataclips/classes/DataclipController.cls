@@ -14,6 +14,10 @@ public class DataclipController {
         req.setEndpoint(dataclipUrl + '.json');
         req.setMethod('GET');
         HttpResponse res = new Http().send(req);
+        while (res.getStatusCode() == 302) {
+            req.setEndpoint(res.getHeader('Location'));
+            res = new Http().send(req);  
+        }
         result = (DataclipResult) JSON.deserializeStrict(res.getBody(), DataclipResult.class);
     }    
 
